@@ -1,14 +1,12 @@
 FROM node:7-alpine
 
-ENV NPM_CONFIG_LOGLEVEL info
-
-# Install packages
-RUN apk add --no-cache --update \
-    bash curl git openssh && \
-    rm -rf /var/cache/apk/*
+ENV NPM_CONFIG_LOGLEVEL error
+ENV YARN_VERSION 0.21.0
 
 # Install Yarn
-RUN mkdir -p /opt
-ADD yarn-v0.19.1.tar.gz /opt/
-RUN mv /opt/dist /opt/yarn
-ENV PATH "$PATH:/opt/yarn/bin"
+ADD https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v${YARN_VERSION}.tar.gz /opt/yarn.tar.gz
+RUN cd /opt/ && tar xf yarn.tar.gz && mv dist yarn && rm yarn.tar.gz
+ENV PATH $PATH:/opt/yarn/bin/
+
+# Install AWS CLI
+RUN apk add awscli
