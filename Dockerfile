@@ -1,7 +1,7 @@
 FROM node:8-alpine
 
 ENV NPM_CONFIG_LOGLEVEL error
-ENV YARN_VERSION 0.24.6
+ENV YARN_VERSION 0.27.5
 
 # Install Yarn
 ADD https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v${YARN_VERSION}.tar.gz /opt/yarn.tar.gz
@@ -18,5 +18,5 @@ RUN apk --no-cache update && \
     rm -rf /var/cache/apk/*
 
 # Install development packages
-RUN apk add --no-cache --update bash curl git openssh && \
+RUN apk add --no-cache --update bash curl git openssh jq && \
     rm -rf /var/cache/apk/*
