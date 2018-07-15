@@ -1,3 +1,3 @@
 # docker-node
 
-Docker image for Node.JS Alpine + Yarn + AWS CLI ready containers
+This project generates a Docker image for Node.JS Alpine, Yarn and AWS CLI container.
